@@ -51,7 +51,7 @@ export default {
     data () {
         return {
             config: Config,
-            isDark: localStorage.getItem('nerva-explorer-theme') !== 'light'
+            isDark: localStorage.getItem('nerva-explorer-theme') === 'dark'
         };
     },
     computed: {
@@ -82,7 +82,6 @@ export default {
         },
         toggleTheme () {
             this.isDark = !this.isDark;
-            this.$vuetify.dark = this.isDark;
             const newTheme = this.isDark ? darkTheme : lightTheme;
             Object.keys(newTheme).forEach(key => {
                 this.$vuetify.theme[key] = newTheme[key];
@@ -103,32 +102,19 @@ export default {
     height: 36px !important;
     width: auto;
 }
-/* Base (light mode) */
+/* Toolbar is always dark in both themes — always use light text */
 .nav-link {
-    color: #686868;
+    color: #AEAEAE;
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 500;
 }
 .nav-link:hover, .nav-link:hover i {
-    color: #444444;
+    color: #CECECE;
 }
 .router-link-active.nav-link,
 .router-link-exact-active.nav-link {
-    cursor: default;
-    color: #222222;
-}
-/* Dark mode */
-:root.dark-mode .nav-link {
-    color: #AEAEAE;
-}
-:root.dark-mode .nav-link:hover,
-:root.dark-mode .nav-link:hover i {
-    color: #CECECE;
-}
-:root.dark-mode .router-link-active.nav-link,
-:root.dark-mode .router-link-exact-active.nav-link {
     cursor: default;
     color: #EDF0F2;
 }

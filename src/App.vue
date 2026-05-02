@@ -165,4 +165,82 @@ body {
 .explorer-footer {
     background-color: #222429 !important;
 }
+
+:root.dark-mode #app {
+    color: #D4D7D9;
+}
+
+/* ── Dark mode overrides for Vuetify 1.x components ── */
+:root.dark-mode .v-card {
+    background-color: #272f33 !important;
+    color: #D4D7D9 !important;
+}
+:root.dark-mode .v-card .v-card__text,
+:root.dark-mode .v-card .v-card__title {
+    color: #D4D7D9 !important;
+}
+:root.dark-mode .v-expansion-panel__container {
+    background-color: #272f33 !important;
+    color: #D4D7D9 !important;
+}
+:root.dark-mode .v-expansion-panel__header {
+    color: #D4D7D9 !important;
+}
+:root.dark-mode .v-datatable,
+:root.dark-mode .v-datatable table {
+    background-color: #272f33 !important;
+}
+:root.dark-mode .v-datatable thead th {
+    color: #AFB1B3 !important;
+    border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+}
+:root.dark-mode .v-datatable tbody tr {
+    background-color: #272f33 !important;
+}
+:root.dark-mode .v-datatable tbody tr:hover {
+    background-color: #2C3033 !important;
+}
+:root.dark-mode .v-datatable tbody td {
+    color: #D4D7D9 !important;
+    border-bottom-color: rgba(255, 255, 255, 0.12) !important;
+}
+:root.dark-mode .v-datatable__actions {
+    background-color: #272f33 !important;
+    color: #D4D7D9 !important;
+    border-top-color: rgba(255, 255, 255, 0.12) !important;
+}
+:root.dark-mode .v-datatable__actions .v-btn {
+    color: #D4D7D9 !important;
+}
+:root.dark-mode .v-list {
+    background-color: #272f33 !important;
+}
+:root.dark-mode .v-list__tile__title,
+:root.dark-mode .v-list__tile__sub-title {
+    color: #D4D7D9 !important;
+}
+:root.dark-mode hr.v-divider {
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+:root.dark-mode .v-input__slot {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+:root.dark-mode .v-text-field input {
+    color: #D4D7D9 !important;
+}
+:root.dark-mode label.v-label {
+    color: #AFB1B3 !important;
+}
+:root.dark-mode .v-select__selection {
+    color: #D4D7D9 !important;
+}
+:root.dark-mode .v-menu__content {
+    background-color: #191e21 !important;
+}
+:root.dark-mode .v-menu__content .v-list__tile {
+    color: #D4D7D9 !important;
+}
+:root.dark-mode .v-menu__content .v-list__tile:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
 </style>
