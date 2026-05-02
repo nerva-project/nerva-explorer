@@ -166,6 +166,22 @@ body {
     background-color: #222429 !important;
 }
 
+/* ── Top section stats text (secondary--text text--lighten-1) ── */
+/* Light mode: white text on dark primary bg (was medium gray) */
+:root:not(.dark-mode) .secondary--text.text--lighten-1 {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+/* Dark mode: soft gray, not blinding white */
+:root.dark-mode .secondary--text.text--lighten-1 {
+    color: #D4D7D9 !important;
+}
+
+/* ── Section header text (primary--text text--lighten-2) ── */
+/* Dark mode: primary.lighten2 = #2C3033 (nearly black) is invisible on dark surface */
+:root.dark-mode .primary--text.text--lighten-2 {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
 /* ── Light mode: white content surfaces, black text ── */
 :root:not(.dark-mode) .secondary.lighten-1 {
     background-color: #e8eaec !important;
@@ -184,8 +200,22 @@ body {
     background-color: #191e21 !important;
     color: #D4D7D9 !important;
 }
+/* General secondary lighten-2 surfaces */
 :root.dark-mode .secondary.lighten-2 {
     background-color: #20262a !important;
     color: #D4D7D9 !important;
+}
+/* Search bar: needs more contrast than generic secondary lighten-2 surfaces
+   (it sits on primary = #20262a, same color, so needs to be visibly lighter) */
+:root.dark-mode .secondary.lighten-2.search-wrapper {
+    background-color: #2d383e !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+:root.dark-mode .search-input {
+    background-color: transparent;
+    color: #D4D7D9 !important;
+}
+:root.dark-mode .search-input::placeholder {
+    color: #707273 !important;
 }
 </style>
