@@ -1,10 +1,13 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
-import theme from '@/theme';
+import { darkTheme, lightTheme } from '@/theme';
+
+const isDark = localStorage.getItem('nerva-explorer-theme') !== 'light';
 
 Vue.use(Vuetify, {
-    theme: theme,
+    dark: isDark,
+    theme: isDark ? darkTheme : lightTheme,
     options: {
         customProperties: true
     },

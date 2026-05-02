@@ -1,0 +1,17 @@
+# Web project — store and checkout everything as LF (deploys to Linux)
+* text=auto eol=lf
+
+# Binary files — no line ending conversion
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+*.ttf binary
+*.otf binary
+*.svg binary
+*.pdf binary
+*.zip binary

@@ -16,7 +16,7 @@
             </v-container>
         </v-content>
         <v-footer
-            class="pa-3 primary no-select"
+            class="pa-3 no-select explorer-footer"
             dark
             height="auto">
             <v-layout row wrap align-center>
@@ -120,7 +120,7 @@ export default {
 
 <style>
 body {
-    background-color: #2C3033;
+    background-color: var(--v-primary-base);
 }
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -161,5 +161,8 @@ body {
 }
 .nerva-gradient {
     background-image: linear-gradient( 135deg, rgba(85, 168, 191, 1) 0%, rgba(99, 88, 145, 1) 100%);
+}
+.explorer-footer {
+    background-color: #222429 !important;
 }
 </style>
