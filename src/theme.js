@@ -1,10 +1,10 @@
 export const darkTheme = {
     primary: {
-        base: '#2C3033',
-        darken1: '#222429',
-        darken2: '#202528',
-        lighten1: '#34383b',
-        lighten2: '#53585B'
+        base: '#20262a',
+        darken1: '#191e21',
+        darken2: '#141719',
+        lighten1: '#272f33',
+        lighten2: '#2C3033'
     },
     secondary: {
         base: '#D4D7D9',
@@ -36,13 +36,15 @@ export const darkTheme = {
     warning: '#FFC107'
 };
 
+// Light mode keeps the original dark primary so the top stats section
+// never changes — only $vuetify.dark controls the card/table backgrounds.
 export const lightTheme = {
     primary: {
-        base: '#f5f7f8',
-        darken1: '#e8ecef',
-        darken2: '#dde1e4',
-        lighten1: '#ffffff',
-        lighten2: '#ffffff'
+        base: '#2C3033',
+        darken1: '#222429',
+        darken2: '#202528',
+        lighten1: '#34383b',
+        lighten2: '#53585B'
     },
     secondary: {
         base: '#686868',
