@@ -1,0 +1,144 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--clr-bg);
+  --color-foreground: var(--clr-text);
+  --color-card: var(--clr-bg-surface);
+  --color-card-foreground: var(--clr-text);
+  --color-primary: var(--clr-accent);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--clr-bg-secondary);
+  --color-secondary-foreground: var(--clr-text);
+  --color-muted: var(--clr-bg-secondary);
+  --color-muted-foreground: var(--clr-text-muted);
+  --color-accent: var(--clr-accent);
+  --color-accent-foreground: #ffffff;
+  --color-destructive: #ef4444;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-border: var(--clr-border);
+  --color-input: var(--clr-border);
+  --color-ring: var(--clr-accent);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-purple: var(--brand-purple);
+  --font-sans: var(--font-rubik), "Rubik", system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "Cascadia Code", monospace;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-2xl: 12px;
+}
+
+:root {
+  --radius: 6px;
+
+  /* Nerva brand - single accent color */
+  --brand-teal: #4a9aaa;
+  --brand-purple: #5b5288;
+
+  /* Light theme - clean, neutral */
+  --clr-bg: #ffffff;
+  --clr-bg-secondary: #f5f6f8;
+  --clr-bg-surface: #ffffff;
+  --clr-bg-hover: #f0f1f4;
+  --clr-text: #1a1a2e;
+  --clr-text-muted: #6b7280;
+  --clr-text-subtle: #9ca3af;
+  --clr-accent: #4a9aaa;
+  --clr-border: #e5e7eb;
+  --clr-border-light: #f0f1f4;
+  --shadow-soft: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.dark {
+  --brand-teal: #5fb8c9;
+  --brand-purple: #8b80b8;
+
+  --clr-bg: #0d0d12;
+  --clr-bg-secondary: #16161e;
+  --clr-bg-surface: #1a1a24;
+  --clr-bg-hover: #22222e;
+  --clr-text: #d1d5db;
+  --clr-text-muted: #6b7280;
+  --clr-text-subtle: #4b5563;
+  --clr-accent: #5fb8c9;
+  --clr-border: #2a2a36;
+  --clr-border-light: #22222e;
+  --shadow-soft: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+@layer base {
+  * {
+    border-color: var(--clr-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    font-family: var(--font-rubik), "Rubik", system-ui, -apple-system, sans-serif;
+    margin: 0;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  ::selection {
+    background: var(--clr-accent);
+    color: #fff;
+  }
+}
+
+/* Utilities */
+.hash {
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  font-size: 0.82em;
+  letter-spacing: -0.01em;
+}
+.hash-truncate {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Subtle shimmer for loading */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent, var(--clr-bg-hover), transparent);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--clr-text-subtle); }
+
+code {
+  background: var(--clr-bg-secondary);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  font-size: 0.88em;
+  font-family: var(--font-jetbrains), ui-monospace, monospace;
+  color: var(--clr-text);
+}
