@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useSyncExternalStore } from "react";
 import { type BlockHeader, type TransactionDetail, formatBlockTime, formatBlockSize, decimalUnits, displayUnits } from "@/lib/nerva-api";
 import { config } from "@/config/config";
 import { CopyIcon, CheckIcon, CloseIcon, CubeIcon, ExchangeIcon } from "./icons";
@@ -195,6 +195,49 @@ function Row({
   );
 }
 
+// Renders a block/tx timestamp on the client only. `formatBlockTime` depends on
+// the runtime clock and timezone, so the server and the viewer disagree on its
+// output. On the standalone /block and /tx pages that value is server-rendered,
+// and the resulting hydration mismatch made React re-render the root <html> and
+// drop the inline-script `.dark` class, flipping the page to light (issue #4).
+// Deferring to after mount makes SSR and the first client render agree (both show
+// the placeholder), keeping hydration clean and the theme intact.
+const subscribeHydration = () => () => {};
+
+// True only after hydration on the client. useSyncExternalStore makes the server
+// and the first client render agree (both false), so there is no hydration
+// mismatch and no setState-in-effect.
+function useHydrated() {
+  return useSyncExternalStore(subscribeHydration, () => true, () => false);
+}
+
+function BlockTimestamp({ unix, showAgo = false }: { unix: number; showAgo?: boolean }) {
+  const hydrated = useHydrated();
+
+  if (!hydrated) {
+    return (
+      <>
+        <div style={{ color: "var(--clr-text-subtle)" }}>—</div>
+        {showAgo && (
+          <div className="text-xs" style={{ color: "var(--clr-text-subtle)" }}>—</div>
+        )}
+      </>
+    );
+  }
+
+  const time = formatBlockTime(unix);
+  return (
+    <>
+      <div>{time.abs}</div>
+      {showAgo && (
+        <div className="text-xs" style={{ color: "var(--clr-text-muted)" }}>
+          {time.ago}
+        </div>
+      )}
+    </>
+  );
+}
+
 export function BlockDetailContent({
   block,
   copied,
@@ -204,7 +247,6 @@ export function BlockDetailContent({
   copied: string | null;
   onCopy: (text: string, key: string) => void;
 }) {
-  const time = formatBlockTime(block.timestamp);
   return (
     <div className="divide-y" style={{ borderColor: "var(--clr-border-light)" }}>
       <Row label="Height" copyValue={String(block.height)} copyKey="height" copied={copied} onCopy={onCopy}>
@@ -213,8 +255,7 @@ export function BlockDetailContent({
         </span>
       </Row>
       <Row label="Timestamp" copied={copied} onCopy={onCopy}>
-        <div>{time.abs}</div>
-        <div className="text-xs" style={{ color: "var(--clr-text-muted)" }}>{time.ago}</div>
+        <BlockTimestamp unix={block.timestamp} showAgo />
       </Row>
       <Row label="Hash" copyValue={block.hash} copyKey="hash" copied={copied} onCopy={onCopy}>
         <code className="text-xs">{block.hash}</code>
@@ -317,7 +358,7 @@ export function TxDetailContent({
       )}
       {txDetail.block_timestamp && (
         <Row label="Timestamp" copied={copied} onCopy={onCopy}>
-          {formatBlockTime(txDetail.block_timestamp).abs}
+          <BlockTimestamp unix={txDetail.block_timestamp} />
         </Row>
       )}
       {txDetail.fee !== undefined && (
