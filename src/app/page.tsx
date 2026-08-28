@@ -179,7 +179,7 @@ export default function Home() {
                 <MempoolVisualization txPool={txPool} onSelectTx={onSelectTx} networkInfo={networkInfo} />
               </div>
               <div>
-                <MiningHeatmap blocks={blocks} />
+                <MiningHeatmap />
               </div>
             </div>
           </div>
